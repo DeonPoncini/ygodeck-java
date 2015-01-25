@@ -12,13 +12,21 @@ elseif ("${CROSS_TARGET}" STREQUAL "android")
 endif()
 
 find_package(jniw)
-find_package(ygodata)
-find_package(ygodata-jni)
 find_package(mindbw)
+find_package(ygodata)
+find_package(ygodata-c)
+find_package(ygodata-jni)
+find_package(ygodeck)
+find_package(ygodeck-c)
 find_package(ygodeck-java-data)
 
 include_directories(${JNIW_INCLUDE_DIRS})
+include_directories(${MINDBW_INCLUDE_DIRS})
+include_directories(${YGODATA_INCLUDE_DIRS})
+include_directories(${YGODATA-C_INCLUDE_DIRS})
 include_directories(${YGODATA-JNI_INCLUDE_DIRS})
+include_directories(${YGODECK_INCLUDE_DIRS})
+include_directories(${YGODECK-C_INCLUDE_DIRS})
 
 ################################
 # Locate source
@@ -31,7 +39,7 @@ add_library(ygodeck-jni SHARED
     ${INCLUDES})
 
 set(YGODECK_JNI_3P_LIBS
-    ygodeck-c
+    ${YGODECK-C_LIBRARIES}
     ${JNIW_LIBRARIES}
     ${YGODATA-JNI_LIBRARIES})
 
@@ -58,7 +66,7 @@ set_target_properties(ygodeck-jni PROPERTIES
 make_directory(${CMAKE_CURRENT_BINARY_DIR}/test)
 add_custom_command(TARGET ygodeck-jni POST_BUILD
     COMMAND rm ARGS -f ${CMAKE_CURRENT_BINARY_DIR}/test/card.db
-    COMMAND ${CMAKE_CURRENT_LIST_DIR}/../../scripts/load-db
+    COMMAND ${CMAKE_CURRENT_LIST_DIR}/../ygodeck/scripts/load-db
     ARGS ${CMAKE_CURRENT_BINARY_DIR}/test/card.db
 )
 
