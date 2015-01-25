@@ -18,7 +18,6 @@ find_package(ygodata-c)
 find_package(ygodata-jni)
 find_package(ygodeck)
 find_package(ygodeck-c)
-find_package(ygodeck-java-data)
 
 include_directories(${JNIW_INCLUDE_DIRS})
 include_directories(${MINDBW_INCLUDE_DIRS})
@@ -90,7 +89,7 @@ add_custom_command(
     --project-cache-dir ${CMAKE_CURRENT_BINARY_DIR}/gradle
     -PnativeDir=${CMAKE_CURRENT_BINARY_DIR}/native-libs/
     -PygodataIncludes=${YGODATA_JAVA_INCLUDE_DIRS}
-    -PygodeckIncludes=${YGODECK-JAVA-DATA_JAVA_INCLUDE_DIRS}
+    -PygodeckIncludes=${YGODECK_JAVA_INCLUDE_DIRS}
     -PmindbwIncludes=${MINDBW_JAVA_INCLUDE_DIRS}
     -ParchiveNativeDir=${ARCHIVE_NATIVE_DIR}
     -PjavaAwtDir=${JAVA_AWT_DIR}
@@ -109,7 +108,7 @@ add_custom_target(ygodeckJar-test
     --project-cache-dir ${CMAKE_CURRENT_BINARY_DIR}/gradle
     -PnativeDir=${CMAKE_CURRENT_BINARY_DIR}/native-libs/
     -PygodataIncludes=${YGODATA_JAVA_INCLUDE_DIRS}
-    -PygodeckIncludes=${YGODECK-JAVA-DATA_JAVA_INCLUDE_DIRS}
+    -PygodeckIncludes=${YGODECK_JAVA_INCLUDE_DIRS}
     -PmindbwIncludes=${MINDBW_JAVA_INCLUDE_DIRS}
     -ParchiveNativeDir=${ARCHIVE_NATIVE_DIR}
     -PjavaAwtDir=${JAVA_AWT_DIR}
