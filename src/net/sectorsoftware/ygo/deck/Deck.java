@@ -17,6 +17,7 @@ public class Deck
     private native int addCard(long p, String name);
     private native List<StaticCardData> cards(long p);
     private native void deleteCard(long p, String name);
+    private native void remove(long p);
 
     public Deck(DeckType deckType)
     {
@@ -74,7 +75,13 @@ public class Deck
     public void deleteCard(String name)
     {
         assert mDeckHandle != 0;
-        deleteCard(name);
+        deleteCard(mDeckHandle, name);
+    }
+
+    public void remove()
+    {
+        assert mDeckHandle != 0;
+        remove(mDeckHandle);
     }
 
     private long mDeckHandle = 0;

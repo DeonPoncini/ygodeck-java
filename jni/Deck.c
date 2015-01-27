@@ -84,3 +84,8 @@ JNI_RETURN(void) JNI_SIGNATURE(deleteCard) (JNIEnv* env, jobject obj, jlong p,
     (*env)->ReleaseStringUTFChars(env, name, str);
 }
 
+JNI_RETURN(void) JNI_SIGNATURE(remove) (JNIEnv* env, jobject obj, jlong p)
+{
+    DECK_NAME(remove)((DECK_THIS) p);
+}
+
