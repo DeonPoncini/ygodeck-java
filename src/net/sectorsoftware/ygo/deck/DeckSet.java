@@ -20,6 +20,7 @@ public class DeckSet
     private native void deleteCard(long p, int deckType, String name);
     private native void remove(long p);
     private native boolean validate(long p);
+    private native String exportCards(long p);
 
     public DeckSet(String name, User user, Format format)
     {
@@ -94,6 +95,12 @@ public class DeckSet
     {
         assert mDeckSetHandle != 0;
         return validate(mDeckSetHandle);
+    }
+
+    public String exportCards()
+    {
+        assert mDeckSetHandle != 0;
+        return exportCards(mDeckSetHandle);
     }
 
     private long mDeckSetHandle;

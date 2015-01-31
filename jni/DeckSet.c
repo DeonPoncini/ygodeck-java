@@ -141,3 +141,11 @@ JNI_RETURN(jboolean) JNI_SIGNATURE(validate) (JNIEnv* env, jobject obj, jlong p)
 {
     return (jboolean) DECKSET_NAME(validate)((DECKSET_THIS) p);
 }
+
+JNI_RETURN(jstring) JNI_SIGNATURE(exportCards) (JNIEnv* env, jobject obj, jlong p)
+{
+    char* n = DECKSET_NAME(exportCards)((DECKSET_THIS) p);
+    jstring ret = jniw_to_jstring(env, n);
+    DECKSET_NAME(delete_exportCards)(n);
+    return ret;
+}
