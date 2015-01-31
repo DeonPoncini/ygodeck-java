@@ -62,6 +62,11 @@ public class FormatTest
             assertEquals(formatT.formatDate(), f);
             assertEquals(formatT.format(), DataTypes.Format.TRADITIONAL);
             formatT.delete();
+
+            Format formatM = new Format(DataTypes.Format.MEGABANNED, f);
+            assertEquals(formatM.formatDate(), f);
+            assertEquals(formatM.format(), DataTypes.Format.MEGABANNED);
+            formatM.delete();
         }
     }
 
@@ -81,21 +86,27 @@ public class FormatTest
     {
         Format formatA = new Format(DataTypes.Format.ADVANCED, "April 2004");
         Format formatT = new Format(DataTypes.Format.TRADITIONAL, "April 2004");
+        Format formatM = new Format(DataTypes.Format.MEGABANNED, "April 2004");
 
         assertEquals(0, formatA.cardCount("Change of Heart"));
         assertEquals(1, formatT.cardCount("Change of Heart"));
+        assertEquals(0, formatM.cardCount("Change of Heart"));
 
         assertEquals(1, formatA.cardCount("Mage Power"));
         assertEquals(1, formatT.cardCount("Mage Power"));
+        assertEquals(0, formatM.cardCount("Mage Power"));
 
         assertEquals(2, formatA.cardCount("Creature Swap"));
         assertEquals(2, formatT.cardCount("Creature Swap"));
+        assertEquals(0, formatM.cardCount("Creature Swap"));
 
         assertEquals(3, formatA.cardCount("Kuriboh"));
         assertEquals(3, formatT.cardCount("Kuriboh"));
+        assertEquals(3, formatM.cardCount("Kuriboh"));
 
         formatA.delete();
         formatT.delete();
+        formatM.delete();
     }
 
 }
